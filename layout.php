@@ -28,11 +28,18 @@ ini_set('display_errors','1');
     <!-- Contenido principal -->
     <main class="mt-4">
       <?php
-        $cnt = __DIR__ . '/elementos/contenido.php';
-        if (is_file($cnt) && is_readable($cnt)) {
-          require_once $cnt;
+        $pagina = $_GET['pagina'];
+
+        if($pagina == null){
+          $archivo = __DIR__ . "/elementos/contenido.php";
+        }else{
+          $archivo = __DIR__ . "/elementos/{$pagina}.php";
+        }
+        
+        if (is_file($archivo) && is_readable($archivo)) {
+          require_once $archivo;
         } else {
-          echo '<div class="alert alert-danger">No se encuentra/lee contenido: ' . htmlspecialchars($cnt) . '</div>';
+          echo '<div class="alert alert-warning">Página no encontrada: ' . htmlspecialchars($pagina) . '</div>';
         }
       ?>
     </main>
