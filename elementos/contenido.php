@@ -5,6 +5,9 @@ $productos = [
   "Aceitunas aliñadas"  => 2.50,
   "Tortas de aceite"    => 3.00
 ];
+
+$nombres = array_keys($productos);
+$precios = array_values($productos);
 ?>
 
 <h2 class="text-success text-center mt-4">Productos locales de Camas</h2>
@@ -17,11 +20,11 @@ $productos = [
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($productos as $nombre => $precio): ?>
+    <?php for ($i = 0; $i < count($productos); $i++): ?>
       <tr>
-        <td><?= htmlspecialchars($nombre) ?></td>
-        <td><?= number_format($precio, 2, ',', '.') ?></td>
+        <td><?= htmlspecialchars($nombres[$i]) ?></td>
+        <td><?= number_format($precios[$i], 2, ',', '.') ?></td>
       </tr>
-    <?php endforeach; ?>
+    <?php endfor; ?>
   </tbody>
 </table>
