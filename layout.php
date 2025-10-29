@@ -28,13 +28,9 @@ ini_set('display_errors','1');
     <!-- Contenido principal -->
     <main class="mt-4">
       <?php
-        $pagina = $_GET['pagina'];
-
-        if($pagina == null){
-          $archivo = __DIR__ . "/elementos/contenido.php";
-        }else{
-          $archivo = __DIR__ . "/elementos/{$pagina}.php";
-        }
+        $pagina = $_GET['pagina'] ?? 'inicio';
+        $archivo = __DIR__ . "/elementos/{$pagina}.php";
+        
         
         if (is_file($archivo) && is_readable($archivo)) {
           require_once $archivo;

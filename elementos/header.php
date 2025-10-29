@@ -2,6 +2,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
+<?php
+session_start(); // Iniciar la sesión
+?>
+
 <header class="text-center bg-white p-3 rounded shadow-sm">
   <h1 class="text-primary">Bienvenido a Camas - Mi Sitio Dinámico PHP</h1>
   <p class="text-muted">Usando include() por primera vez</p>
@@ -22,6 +26,18 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Opciones</a>
         </li>
+
+        <?php if(isset($_SESSION['admin'])): ?>
+          <li class="nav-item">
+            <a class="nav-link" href="inicio.php">Cerrar sesión</a>
+          </li>
+        <?php else: ?>
+          <!-- Si el usuario no está logueado -->
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?pagina=sesión_iniciada">Iniciar sesión</a>
+          </li>
+        <?php endif; ?>
+
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
